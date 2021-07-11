@@ -74,7 +74,86 @@ Vue.js では、① イベントによる UI の状態の変更、②UI の状�
 
 この UI 構築の考え方が理解できると、Vue.js でコーディングする流れもスムーズに理解できるかと思います。
 
+【参考サイト】
+
+- [Vue.js と jQuery の違いは メリット・デメリットを歴史的に比較](https://runteq.jp/blog/programming-school/knowledge/2774/)
+- [jQuery から Vue.js へのステップアップ - Qiita](https://qiita.com/mio3io/items/e7b2596d06b8005e8e6f)
+
 ## Vue.js の導入
+
+ここからは実際に手を動かしならが学んでいきます。
+
+Vue.js の一番簡単な導入方法は、script 要素で直接読み込むやり方です。最新バージョンが CDN の https://unpkg.com/vue という URL で配信されています。
+
+今回はバージョンが指定された https://unpkg.com/vue@2.5.17 という URL を利用します。以下のように script 要素で読み込むだけで、Vue.js の導入が完了します。
+
+読み込んだ後は、グローバル変数 Vue が定義され、ここから Vue.js の機能を利用できます。
+
+```
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            {{ message }}
+        </p>
+    </div>
+    <script>
+        // ロードされ、Vueがグローバル変数として定義されているか確認
+        console.assert(typeof Vue !== 'undefined');
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'こんにちは!'
+            }
+        });
+    </script>
+</body>
+
+</html>
+```
+
+### TODO：
+
+- 任意の場所に `index.html` ファイルを作成する
+- `index.html` ファイルに上記のコードを実装する
+- 表示結果を確認して、画面に「こんにちは！」と表示されることを確認する
+
+### 結果：
+
+![alt属性](images/02_04.png "タイトル")
+
+### 解説：
+
+まずは、上記の TODO に取り組み表示結果を確認してみましょう。
+
+画面に「こんにちは！」と表示されていれば、Vue.js の導入が完了しています。
+
+ここでは、Vue.js の核の機能であるデータバインディングに注目してください。
+
+```
+new Vue({
+    el: '#app',
+    data: {
+        message: 'こんにちは!'
+    }
+});
+```
+
+このコードは、Vue インスタンスを生成して以下のことを行っています。
+
+- `el: '#app'` で Vue インスタンス をマウントする要素を指定
+- `data: {}` で UI のデータを定義（オブジェクト形式で保持する）
+
+後ほど細かく解説しますので、現状では Vue インスタンスが保持しているデータオブジェクトが、DOM 要素に反映（データバインディング）されていることが確認できれば OK です。
 
 ## Vue オブジェクト
 
